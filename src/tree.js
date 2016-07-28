@@ -224,8 +224,13 @@ var FilesTree = View.extend({
         // this.listenTo(this.model, "fs:files:deleted", this.refresh);
     },
 
-    created: function(path) {
-        console.log('created path = ', path);
+    created: function(e) {
+        var path = e.data;
+
+        return this.model.get(path)
+            .then(function(f) {
+                console.log(f);
+            });
     },
 
     refresh: function() {
