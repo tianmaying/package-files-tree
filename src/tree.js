@@ -225,9 +225,10 @@ var FilesTree = View.extend({
     },
 
     created: function(e) {
-        var path = e.data;
+        var path = e.data,
+            dir = this.model.get('path');
 
-        return this.model.stat(this.get('path') + '/' + path)
+        return this.model.stat(dir ? dir + '/' + path : path)
             .then(function(f) {
                 console.log(f);
             });
