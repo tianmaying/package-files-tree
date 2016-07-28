@@ -225,12 +225,17 @@ var FilesTree = View.extend({
     },
 
     created: function(e) {
-        var path = e.data;
+        var path = e.data,
+            that = this;
 
         return this.model.stat(path)
             .then(function(f) {
-                console.log(f);
-            });
+                var item = new FileItem({
+                    model: f
+                }, that);
+                this.items.push(item);
+                _.sortBy(this.items, function(o) { return o.path; });
+            }).then(this.update.bind(this));
     },
 
     refresh: function() {
