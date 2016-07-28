@@ -220,8 +220,12 @@ var FilesTree = View.extend({
     initialize: function(options) {
         FilesTree.__super__.initialize.apply(this, arguments);
 
-        this.listenTo(this.model, "fs:files:created", this.refresh);
-        this.listenTo(this.model, "fs:files:deleted", this.refresh);
+        this.listenTo(this.model, "fs:files:created", this.created);
+        // this.listenTo(this.model, "fs:files:deleted", this.refresh);
+    },
+
+    created: function(path) {
+        console.log('created path = ', path);
     },
 
     refresh: function() {
