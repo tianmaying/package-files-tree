@@ -2,7 +2,7 @@ var settings = require("./settings");
 
 var _ = codebox.require("hr.utils");
 var $ = codebox.require("jquery");
-var File = codebox.require("model/file");
+var File = codebox.require("models/file");
 var View = codebox.require("hr.view");
 var dialogs = codebox.require("utils/dialogs");
 var menu = codebox.require("utils/menu");
@@ -222,7 +222,6 @@ var FilesTree = View.extend({
         FilesTree.__super__.initialize.apply(this, arguments);
 
         this.listenTo(this.model, "fs:files:created", this.created);
-        // this.listenTo(this.model, "fs:files:deleted", this.refresh);
     },
 
     created: function(e) {
@@ -230,11 +229,13 @@ var FilesTree = View.extend({
             that = this,
             file = new File();
 
+        this.items = this.items || [];
+
         return file.stat(path).then(function(f) {
             var item = new FileItem({
                 model: f
             }, that);
-            that.items.splice(1, 0, item);
+            that.items.push(item);
         }).then(this.update.bind(this));
     },
 
