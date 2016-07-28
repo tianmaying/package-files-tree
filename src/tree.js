@@ -233,8 +233,7 @@ var FilesTree = View.extend({
                 var item = new FileItem({
                     model: f
                 }, that);
-                this.items.push(item);
-                _.sortBy(this.items, function(o) { return o.path; });
+                that.items.splice(1, 0, item);
             }).then(this.update.bind(this));
     },
 
