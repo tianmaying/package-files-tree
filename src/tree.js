@@ -2,6 +2,7 @@ var settings = require("./settings");
 
 var _ = codebox.require("hr.utils");
 var $ = codebox.require("jquery");
+var File = codebox.require("model/file");
 var View = codebox.require("hr.view");
 var dialogs = codebox.require("utils/dialogs");
 var menu = codebox.require("utils/menu");
@@ -102,7 +103,7 @@ var FileItem = View.extend({
                     });
                 }
             }
-        ]
+        ];
 
         if (this.model.isDirectory()) {
             items = items.concat([
@@ -226,15 +227,15 @@ var FilesTree = View.extend({
 
     created: function(e) {
         var path = e.data,
-            that = this;
+            that = this,
+            file = new File();
 
-        return this.model.stat(path)
-            .then(function(f) {
-                var item = new FileItem({
-                    model: f
-                }, that);
-                that.items.splice(1, 0, item);
-            }).then(this.update.bind(this));
+        return file.stat(path).then(function(f) {
+            var item = new FileItem({
+                model: f
+            }, that);
+            that.items.splice(1, 0, item);
+        }).then(this.update.bind(this));
     },
 
     refresh: function() {
