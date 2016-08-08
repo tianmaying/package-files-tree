@@ -187,6 +187,21 @@ var FileItem = View.extend({
                     click: this.doDelete.bind(this)
                 }
             ]);
+            if (codebox.services && codebox.services['projecRunnerService']) {
+                items = items.concat([
+                    {
+                        type: "divider"
+                    },
+                    {
+                        label: "Run As Project",
+                        click: function() {
+                            return codebox.services['projecRunnerService'].run(that.model.get("path")).then(function(data){
+                                window.open(data);
+                            });
+                        }
+                    }
+                    ]);
+            }
         } else {
             items = items.concat([
                 {
