@@ -19,7 +19,7 @@ module.exports = codebox.settings.schema("tree",
                         "command": "settings.open"
                     },
                     {
-                        "command": "run.project"
+                        "command": "video.open"
                     }
                 ]
             },
