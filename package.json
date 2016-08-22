@@ -7,6 +7,6 @@
         "codebox": ">=1.0.0-alpha"
     },
     "packageDependencies": {
-        "panels": "CodeboxIDE/package-panels"
+        "panels": "tianmaying/package-panels"
     }
 }
