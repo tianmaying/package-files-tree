@@ -95,9 +95,9 @@ var FileItem = View.extend({
         var that = this;
         var items = [
             {
-                label: "Rename...",
+                label: "重命名...",
                 click: function() {
-                    return dialogs.prompt("New name:", that.model.get("name"))
+                    return dialogs.prompt("新的文件名:", that.model.get("name"))
                     .then(function(n) {
                         return that.model.rename(n);
                     });
@@ -111,18 +111,18 @@ var FileItem = View.extend({
                     type: "divider"
                 },
                 {
-                    label: "New File",
+                    label: "新建文件",
                     click: function() {
-                        return dialogs.prompt("Create a new file:", "untitled")
+                        return dialogs.prompt("创建新文件:", "untitled")
                         .then(function(n) {
                             return that.model.create(n);
                         });
                     }
                 },
                 {
-                    label: "New Folder",
+                    label: "新建文件夹",
                     click: function() {
-                        return dialogs.prompt("Create a new folder:", "untitled")
+                        return dialogs.prompt("创建新文件夹:", "untitled")
                         .then(function(n) {
                             return that.model.mkdir(n);
                         });
@@ -132,11 +132,11 @@ var FileItem = View.extend({
                     type: "divider"
                 },
                 {
-                    label: "Upload",
+                    label: "上传...",
                     type: "menu",
                     items: [
                         {
-                            label: "Files",
+                            label: "文件",
                             click: function() {
                                 codebox.statusbar.progress(
                                     upload.upload({
@@ -146,14 +146,14 @@ var FileItem = View.extend({
                                         }
                                     }),
                                     {
-                                        prefix: "Uploading files"
+                                        prefix: "上传文件"
                                     }
                                 )
                                 .fail(dialogs.alert);
                             }
                         },
                         {
-                            label: "Folder",
+                            label: "文件夹",
                             click: function() {
                                 codebox.statusbar.progress(
                                     upload.upload({
@@ -164,10 +164,9 @@ var FileItem = View.extend({
                                         }
                                     }),
                                     {
-                                        prefix: "Uploading folder"
+                                        prefix: "上传文件夹"
                                     }
-                                )
-                                .fail(dialogs.alert);
+                                ).fail(dialogs.alert);
                             }
                         }
                     ]
@@ -176,14 +175,14 @@ var FileItem = View.extend({
                     type: "divider"
                 },
                 {
-                    label: "Refresh List",
+                    label: "刷新",
                     click: this.doRefresh.bind(this)
                 },
                 {
                     type: "divider"
                 },
                 {
-                    label: "Delete Folder",
+                    label: "删除文件夹",
                     click: this.doDelete.bind(this)
                 }
             ]);
@@ -193,7 +192,7 @@ var FileItem = View.extend({
                         type: "divider"
                     },
                     {
-                        label: "Run As Project",
+                        label: "运行项目",
                         click: function() {
                             return codebox.services['projecRunnerService'].run(that.model.get("path")).then(function(data){
                                 window.open(data);
@@ -205,7 +204,7 @@ var FileItem = View.extend({
         } else {
             items = items.concat([
                 {
-                    label: "Delete File",
+                    label: "删除文件",
                     click: this.doDelete.bind(this)
                 }
             ]);
@@ -216,7 +215,7 @@ var FileItem = View.extend({
 
     // Delete this file/folder
     doDelete: function() {
-        return dialogs.confirm("Delete "+(this.model.isDirectory()? "Folder": "file"))
+        return dialogs.confirm("删除 "+(this.model.isDirectory()? "文件夹": "文件"))
         .then(this.model.remove.bind(this.model));
     },
 
