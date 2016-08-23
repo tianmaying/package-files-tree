@@ -49,6 +49,7 @@ var Toolbar = View.extend({
             .compact()
             .value()
         );
+        console.log('this.commands = ', this.commands.collection);
     }
 });
 
