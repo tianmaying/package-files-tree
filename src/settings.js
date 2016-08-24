@@ -16,9 +16,6 @@ module.exports = codebox.settings.schema("tree",
                         "command": "terminal.open"
                     },
                     {
-                        "command": "settings.open"
-                    },
-                    {
                         "command": "video.open"
                     },
                     {
