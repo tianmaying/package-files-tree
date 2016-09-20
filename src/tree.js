@@ -186,7 +186,7 @@ var FileItem = View.extend({
                     click: this.doDelete.bind(this)
                 }
             ]);
-            if (codebox.services && codebox.services['projecRunnerService']) {
+            if (codebox.services && codebox.services['projectRunnerService']) {
                 items = items.concat([
                     {
                         type: "divider"
@@ -194,9 +194,7 @@ var FileItem = View.extend({
                     {
                         label: "运行项目",
                         click: function() {
-                            return codebox.services['projecRunnerService'].run(that.model.get("path")).then(function(data){
-                                window.open(data);
-                            });
+                            return codebox.services['projectRunnerService'].run(that.model.get("path"));
                         }
                     }
                     ]);
