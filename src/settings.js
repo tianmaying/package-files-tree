@@ -19,7 +19,7 @@ module.exports = codebox.settings.schema("tree",
                         "command": "content.open"
                     },
                     {
-                        "command": "run.project"
+                        "command": "project.run"
                     }
                 ]
             },
